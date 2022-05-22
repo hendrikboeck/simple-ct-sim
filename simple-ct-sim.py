@@ -47,8 +47,7 @@ async def simulate_ct_scan(org: Image,
     tasks.append(asyncio.create_task(ct_scan_from_angle(org, i * angle_step)))
 
   for i, task in enumerate(tasks):
-    row_scan = await task
-    scans[i] = row_scan
+    scans[i] = await task
 
   return scans, parallel_reconstruction(scans, angle_step)
 
@@ -62,7 +61,6 @@ def ct_scan_thread(org: PILImage, num_pictures: int) -> None:
   scbimg = Image.new("F", (IMG_SIZE, IMG_SIZE), 0)
   for i in range(IMG_SIZE):
     for j in range(IMG_SIZE):
-
       scbimg.putpixel(
           (i, j),
           scbimg.getpixel((i, j)) +
