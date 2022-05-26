@@ -10,17 +10,17 @@ IMG_SIZE = 512
 
 async def ct_scan_from_angle(org: PILImage, angle: float) -> np.ndarray:
   sub = org.rotate(angle)
-  sub = np.asarray(sub, dtype=float)
+  sub = np.asarray(sub, dtype=float) / 255.0
   res = np.zeros(IMG_SIZE, dtype=float)
 
   for i in range(len(sub)):
-    res[i] = np.amax(sub[i])
+    res[i] = np.sum(sub[i])
 
   return res
 
 
 def parallel_reconstruction(scans: np.ndarray, angle_step: float) -> PILImage:
-  normalized_scans = scans / float(len(scans))
+  normalized_scans = ((scans / np.amax(scans)) * 255.0) / float(len(scans))
   img = Image.new("F", (IMG_SIZE, IMG_SIZE), 0)
 
   for r in range(len(normalized_scans)):
