@@ -14,11 +14,12 @@ Options:
 ```
 usage: simple-ct-sim.py [-h] --runs N [N ...] --input INPUT [--output OUTPUT]
 
-simple ct simulation
+Simple CT Simulation
 
 options:
   -h, --help        show this help message and exit
-  --runs N [N ...]  array of simulations that should be run. Number specifies the number of pictures taken in that simulation run.
+  --runs N [N ...]  array of simulations that should be run. Number specifies
+                    the number of pictures taken in that simulation run.
   --input INPUT     square graylevel, which CT should be simulated on
   --output OUTPUT   output directory for images
 ```

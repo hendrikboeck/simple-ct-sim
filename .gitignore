@@ -1,5 +1,4 @@
 .vscode/**
 !.vscode/settings.json
 env
-export/**
-!export/.gitkeep
+export
