@@ -53,10 +53,7 @@ def parse_arguments() -> argparse.Namespace:
       required=True
   )
   parser.add_argument(
-      "--out",
-      type=str,
-      help="output directory for images",
-      default=OUTPUT_DIR
+      "--out", type=str, help="output directory for images", default=OUTPUT_DIR
   )
 
   return parser.parse_args()
