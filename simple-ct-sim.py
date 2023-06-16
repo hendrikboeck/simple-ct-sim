@@ -66,8 +66,8 @@ async def ct_scan_from_angle(org: Image.Image, angle: float) -> np.ndarray:
   sub = np.asarray(sub) / MAX_GRAY_VALUE
   res = np.zeros(org.height)
 
-  for i in range(len(sub)):
-    res[i] = np.sum(sub[i])
+  for i, item in enumerate(sub):
+    res[i] = np.sum(item)
 
   return res
 
@@ -105,9 +105,9 @@ async def parallel_reconstruction(scans: np.ndarray) -> Image.Image:
   scans = scans / np.amax(scans)
   tasks = []
 
-  for i in range(len(scans)):
+  for i, item in enumerate(scans):
     tasks.append(
-        asyncio.create_task(create_reprojection_array(scans[i], i * theta))
+        asyncio.create_task(create_reprojection_array(item, i * theta))
     )
 
   reimg = np.zeros((IMG_SIZE, IMG_SIZE))
