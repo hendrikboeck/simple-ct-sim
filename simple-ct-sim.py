@@ -6,7 +6,6 @@ import os
 import argparse
 from multiprocessing import Pool
 from typing import Tuple
-from functools import partial
 
 # -- LIBRARY
 from PIL import Image
